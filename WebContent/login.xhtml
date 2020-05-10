@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<p:commandButton value="Acessar" type="button" onclick="PF('dlg1').show();" />
+	<p:commandButton value="Cadastro" type="button" onclick="PF('dlg2').show();" />
+	
+	<p:dialog header="Acesso" widgetVar="dlg1" modal="true" height="230" width="280" visible="true">
+		<h:form>
+			Usuário<p:inputText id="username" value="#{LoginBean.usrLogin}" required="true"/>
+			Senha<p:password id="password" value="#{LoginBean.pswLogin}" required="true" />
+			<br> </br>
+			<p:commandButton value="Ok" update="@form" action="#{LoginBean.login}" />
+			<p:commandButton value="Cancelar" type="reset" />
+			
+			<p:messages id="message_login" showDetail="true" closable="true">
+			</p:messages>
+			
+		</h:form>
+	</p:dialog>
+
+	<p:dialog header="Cadastro de Novo Usuário" widgetVar="dlg2" modal="true" height="460" width="420">
+		<h:form>
+			<h4>Bem vindo</h4>
+			<p:panelGrid columns="2" id="registerUser" cellpadding="5">
+			
+				Nome *<p:inputText id="name" value="#{LoginBean.user.name}" required="true" />
+				CPF *<p:inputMask id="cpf"  mask="999.999.999-99" value="#{LoginBean.user.cpf}" required="true" />
+				E-mail *<p:inputText id="email" value="#{LoginBean.user.email}" required="true" /> 
+				Username *<p:inputText id="username" value="#{LoginBean.user.username}" required="true" />
+				Senha *<p:password id="psw1" match="psw2" label="Password 1" required="true" feedback="true" />
+				Confirma senha *<p:password id="psw2"  label="Password 2" value="#{LoginBean.user.password}" required="true" feedback="false" /> 
+				
+			</p:panelGrid>
+			<p:messages id="message_user" showDetail="true" closable="true">
+			</p:messages>
+			
+			<h6>*Campos obrigatórios.</h6>
+			<p:commandButton value="Ok" update="@form" actionListener="#{LoginBean.registerUser}" />
+			<p:commandButton value="Cancelar" type="reset" />
+			
+		</h:form>
+	</p:dialog>
+
+</h:body>
+
+</html>
