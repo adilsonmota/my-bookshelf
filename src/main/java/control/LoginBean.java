@@ -69,7 +69,7 @@ public class LoginBean {
 		
 		if (msg) {
 //			showMessage(true);
-			return "searchGame.xhtml";
+			return "searchBook.xhtml";
 		} else {
 //			showMessage(false);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Verifique Usuário ou Senha!"));

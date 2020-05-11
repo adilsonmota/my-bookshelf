@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="livro")
+@Table(name="BOOK")
 
 public class Book {
 	
@@ -47,9 +48,32 @@ public class Book {
 	private Date endRead;
 	
 	@ManyToOne
-	@JoinColumn(name="autor", nullable = false) 
+	@JoinTable(name="BOOK")
+	@JoinColumn(name="AUTOR")
 	private Author author;
 	
+	
+	//	@JoinTable(name="AUTHOR", joinColumns = @JoinColumn(name="nome"), 
+	//	inverseJoinColumns = @JoinColumn(name="book"))
+	
+/**	public Book() {
+	}
+	
+	public Book(int id, String title, String genre, Integer yearPub, Integer qttPag, String review, Integer rating,
+			Date startRead, Date endRead, Author author) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.genre = genre;
+		this.yearPub = yearPub;
+		this.qttPag = qttPag;
+		this.review = review;
+		this.rating = rating;
+		this.startRead = startRead;
+		this.endRead = endRead;
+		this.author = author;
+	}
+**/
 	public int getId() {
 		return id;
 	}

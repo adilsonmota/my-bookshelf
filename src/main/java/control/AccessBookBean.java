@@ -23,6 +23,7 @@ public class AccessBookBean {
 	
 	private String startRead;
 	private String endRead;
+	private String authorName;
 	
 	private Book book;
 	private Author author;
@@ -30,7 +31,7 @@ public class AccessBookBean {
 	private BookDAO bookDAO;
 	private AuthorDAO authorDAO;
 	
-	private List<Book> bookList;
+//	private List<Book> bookList;
 	
 	public AccessBookBean() {
 		
@@ -40,26 +41,47 @@ public class AccessBookBean {
 		this.bookDAO = new BookDAOImpl();
 		this.authorDAO = new AuthorDAOImpl();
 		
-		this.bookList = new ArrayList<Book>();
+//		this.bookList = new ArrayList<Book>();
 		
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 	
 	
 	public void registerBook() {
+		
+		Author newAuthor = new Author(authorName);	// insere o nome no objeto Author
+		Book newBook = new Book();
+		
+				
+		
+		newBook.setTitle(this.book.getTitle());
+		newBook.setGenre(this.book.getGenre());
+		newBook.setYearPub(this.book.getYearPub());
+		newBook.setQttPag(this.book.getQttPag());
+		newBook.setReview(this.book.getReview());
+		newBook.setRating(this.book.getRating());
 		try {
-			this.book.setStartRead(sdf.parse(getStartRead()));
-			this.book.setEndRead(sdf.parse(getEndRead()));
+			newBook.setStartRead(sdf.parse(startRead));
+			newBook.setEndRead(sdf.parse(endRead));
 		}
 		catch (Exception e) {
 			System.out.println("Invalid date format");
 		}
-		this.book.setAuthor(author);
-		this.bookDAO.insert(book);
 		
-		this.author.addBook(book);
 		
-		this.authorDAO.insert(author);
+		
+		newBook.setAuthor(newAuthor);		// insere um Objeto Author no Objeto Book
+		newAuthor.addBook(newBook);			// insere na Lista de Livro do Author o Objeto Livro
+		
+		System.out.println("Dados do Autor: ");
+		System.out.println(newAuthor.getName());
+		System.out.println(newBook.getAuthor().getBook().get(0));
+		System.out.println("-------------------------------------------------------------------");
+		System.out.println("Dados do livro: ");
+		System.out.println(newBook.getTitle() +"|"+ newBook.getQttPag() +"|"+ newBook.getAuthor().getName()+"|"+ newBook.getAuthor().getBook());
+		System.out.println("-------------------------------------------------------------------");
+		this.authorDAO.insert(newAuthor);
+		this.bookDAO.insert(newBook);
 		
 		this.book = new Book();
 		this.author = new Author();
@@ -68,6 +90,16 @@ public class AccessBookBean {
 
 	
 	
+	public String getauthorName() {
+		return authorName;
+	}
+
+
+	public void setauthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+
 	public String getStartRead() {
 		return startRead;
 	}
@@ -104,7 +136,8 @@ public class AccessBookBean {
 		this.author = author;
 	}
 
-	public List<Book> getBookList() {
+/**	public List<Book> getBookList() {
 		return bookList;
 	}
+**/
 }

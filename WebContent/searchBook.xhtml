@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h1>Turma Sefaz 2</h1>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		
+		<p:link outcome="login.xhtml" value="SAIR">
+ <!--    	<f:param name="#{LoginBean.user}" value="null" update="@form"/> -->
+		</p:link>
+		
+		
+		<br> </br>
+		
+		<h3>Buscar Livros</h3>
+		<p:inputText placeholder="palavra-chave" />
+		<p:commandButton value="Search" />
+		
+		<br> </br>
+
+		<h:form>
+			<p:growl id="growl" showDetail="true" />
+
+			<p:commandButton value="Dialog Framework - Data" icon="pi pi-home"
+				action="#{dfView.chooseCar}">
+				<p:ajax event="dialogReturn" listener="#{dfView.onCarChosen}"
+					update="growl" />
+			</p:commandButton>
+		</h:form>
+
+<!-- 
+		<p:ribbon>
+			<p:tab title="Cadastrar">
+				<p:ribbonGroup>
+				Mostrar Livros<br> </br>
+				1. Livro 1<br> </br>
+				2. Livro 2<br> </br>
+				3. livro 3<br> </br>
+				</p:ribbonGroup>
+			</p:tab>
+			<p:tab title="Atualizar">
+				<p:ribbonGroup>
+				Editar Selecionado<br> </br>
+				1. Livro 1<br> </br>
+				</p:ribbonGroup>
+			</p:tab>
+		</p:ribbon>
+-->
+	</h:form>
+</h:body>
+
+</html>

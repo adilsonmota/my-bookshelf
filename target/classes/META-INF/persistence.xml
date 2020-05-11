@@ -7,9 +7,9 @@
 	<persistence-unit name="Sefaz">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
-		<class>Entity.usuario</class>
-	 	<class>Entity.livro</class>
-		<class>Entity.autor</class>
+		<class>entities.User</class>
+	 	<class>entities.Book</class>
+		<class>entities.Author</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" 

@@ -1,24 +1,39 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
 
-
 @Entity
-@SecondaryTable(name="autor")
+@SecondaryTable(name="AUTHOR")
 public class Author {
 	
 	@Id
-	@Column(name="nome", nullable = false)
+//	@Column(name="nome", nullable = false)
+	@OneToMany(mappedBy="author")
+	@JoinTable(name="BOOK", joinColumns = @JoinColumn(name="AUTOR"),
+	inverseJoinColumns = @JoinColumn(name="LIVRO"))
 	private String name;
 	
-	@OneToMany(mappedBy="author")
-	private List<Book> lstbooks;
+	private List<Book> lstbooks = new ArrayList<Book>();;
+	
+//	@JoinTable(name="AUTHOR", joinColumns = @JoinColumn(name="nome"), 
+//			inverseJoinColumns = @JoinColumn(name="book"))
+	
+	public Author() {
+	}
+
+	public Author(String name) {
+		this.name = name;
+	}
 	
 	public String getName() {
 		return name;
@@ -26,7 +41,7 @@ public class Author {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Book> getlivro() {
+	public List<Book> getBook() {
 		return lstbooks;
 	}
 	
@@ -36,5 +51,14 @@ public class Author {
 	
 	public void removeBook(Book book) {
 		lstbooks.remove(book);
+	}
+	
+	@Override
+	public String toString() {
+		String listando = null;
+		for (Book book : lstbooks) {
+			listando = "Dados do Livro: " + book.getTitle() +" | "+ book.getAuthor() +" | "+ book.getRating() + "Nome do Autor: " + getName();
+		}
+		return listando;
 	}
 }
