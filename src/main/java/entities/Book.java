@@ -48,7 +48,7 @@ public class Book {
 	private Date endRead;
 	
 	@ManyToOne
-	@JoinTable(name="BOOK")
+//	@JoinTable(name="BOOK")
 	@JoinColumn(name="AUTOR")
 	private Author author;
 	

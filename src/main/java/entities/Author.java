@@ -3,26 +3,23 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
 
 @Entity
-@SecondaryTable(name="AUTHOR")
+@Table(name="AUTHOR")
 public class Author {
 	
 	@Id
-//	@Column(name="nome", nullable = false)
-	@OneToMany(mappedBy="author")
-	@JoinTable(name="BOOK", joinColumns = @JoinColumn(name="AUTOR"),
-	inverseJoinColumns = @JoinColumn(name="LIVRO"))
+	@Column(name="nome", nullable = false)
 	private String name;
 	
+	@OneToMany(mappedBy="author")
+//	@JoinTable(name="BOOK", joinColumns = @JoinColumn(name="AUTOR"),
+//	inverseJoinColumns = @JoinColumn(name="LIVRO"))
 	private List<Book> lstbooks = new ArrayList<Book>();;
 	
 //	@JoinTable(name="AUTHOR", joinColumns = @JoinColumn(name="nome"), 
