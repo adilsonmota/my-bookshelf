@@ -9,8 +9,14 @@
 
 <h:body>
 	TESTE<p:spinner></p:spinner>
-		
-	
+<h:form>		
+	<h3>Remaining Chars</h3>
+    <p:inputTextarea rows="5" cols="50" counter="review" maxlength="200" counterTemplate="{0} caracteres restantes." autoResize="false" />
+    <br />
+    <h:outputText id="review" />
+ 
+ <!--   <h:outputText id="review" /> -->
+</h:form>
 </h:body>
 
 </html>

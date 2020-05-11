@@ -18,7 +18,7 @@ public class Author {
 	private String name;
 	
 	@OneToMany(mappedBy="author")
-	private List<Book> book;
+	private List<Book> lstbooks;
 	
 	public String getName() {
 		return name;
@@ -27,7 +27,14 @@ public class Author {
 		this.name = name;
 	}
 	public List<Book> getlivro() {
-		return book;
+		return lstbooks;
 	}
 	
+	public void addBook(Book book) {
+		lstbooks.add(book);
+	}
+	
+	public void removeBook(Book book) {
+		lstbooks.remove(book);
+	}
 }

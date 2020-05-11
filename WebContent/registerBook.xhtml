@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h1>Turma Sefaz 2</h1>
+</h:head>
+
+<h:body>
+	<h:form>
+			<h4>Bem vindo</h4>
+			<p:panelGrid columns="2" id="registerBook" cellpadding="9" >
+			
+				Título *<p:inputText id="title" value="#{AccesBookBean.book.title}" required="true" />
+				Autor *<p:inputText id="author" value="#{AccesBookBean.author.name}" required="true"/> 
+				Gênero<p:inputText id="genre" value="#{AccesBookBean.book.genre}" /> 
+				Ano Publicação<p:inputMask id="yearPub" value="#{AccesBookBean.book.yearPub}" mask="9999"/> 
+				Quant. Páginas<p:inputText id="qttPag" value="#{AccesBookBean.book.qttPag}" /> 
+				Avaliação<p:rating id="rating" value="#{AccesBookBean.book.rating}" />  
+				Início Leitura<p:inputMask id="startRead" value="#{AccesBookBean.startRead}" mask="99/99/9999" />
+				Fim Leitura<p:inputMask id="endRead" value="#{AccesBookBean.endRead}" mask="99/99/9999" />
+				Resenha<p:inputTextarea rows="5" cols="50" counter="review" maxlength="200"
+						counterTemplate="{0} caracteres restantes." autoResize="false"
+						value="#{AccesBookBean.book.review}"/>
+			</p:panelGrid>
+
+			<h:outputText id="review"/>
+			
+			<h6>*Campos obrigatórios.</h6>
+			
+			<p:commandButton value="Ok" update="@form" actionListener="#{AccesBookBean.registerBook}" />
+			<p:commandButton value="Cancelar" type="reset" />
+			
+		</h:form>
+		
+	
+</h:body>
+
+</html>

@@ -13,55 +13,122 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="livro")
+
 public class Book {
 	
 	@Id
 	@Column(name="ID", nullable = false)
-	@GeneratedValue(generator = "S_BOOK")
-	@SequenceGenerator(name = "S_BOOK", sequenceName = "S_BOOK", allocationSize = 1)
-	private Long id;
+	@GeneratedValue(generator = "SEQ_BOOK")
+	@SequenceGenerator(name = "SEQ_BOOK", sequenceName = "SEQ_BOOK", allocationSize = 1)
+	private int id;
 	
 	@Column(name="titulo", nullable = false)
 	private String title;
 	
-	@Column(name="genero", nullable = false)
+	@Column(name="genero")
 	private String genre;
 	
-	@Column(name="fstPubDate", nullable = false)
-	private Date fstPubDate;
+	@Column(name="anoPub")
+	private Integer yearPub;
+	
+	@Column(name="qtdpags")
+	private Integer qttPag;
+	
+	@Column(name="resenha")
+	private String review;
+	
+	@Column(name="avaliacao")
+	private Integer rating;
+	
+	@Column(name="inicioLeitura")
+	private Date startRead;
+	
+	@Column(name="fimLeitura")
+	private Date endRead;
 	
 	@ManyToOne
 	@JoinColumn(name="autor", nullable = false) 
 	private Author author;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getGenre() {
 		return genre;
 	}
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public Date getFstPubDate() {
-		return fstPubDate;
+
+	public Integer getYearPub() {
+		return yearPub;
 	}
-	public void setFstPubDate(Date fstPubDate) {
-		this.fstPubDate = fstPubDate;
+
+	public void setYearPub(Integer yearPub) {
+		this.yearPub = yearPub;
 	}
+
+	public Integer getQttPag() {
+		return qttPag;
+	}
+
+	public void setQttPag(Integer qttPag) {
+		this.qttPag = qttPag;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Date getStartRead() {
+		return startRead;
+	}
+
+	public void setStartRead(Date startRead) {
+		this.startRead = startRead;
+	}
+
+	public Date getEndRead() {
+		return endRead;
+	}
+
+	public void setEndRead(Date endRead) {
+		this.endRead = endRead;
+	}
+
 	public Author getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+	
 }

@@ -11,17 +11,19 @@
 	<p:commandButton value="Acessar" type="button" onclick="PF('dlg1').show();" />
 	<p:commandButton value="Cadastro" type="button" onclick="PF('dlg2').show();" />
 	
-	<p:dialog header="Acesso" widgetVar="dlg1" modal="true" height="230" width="280" visible="true">
+	<p:dialog header="Acesso" widgetVar="dlg1" modal="true" height="200" width="350" visible="true">
 		<h:form>
+		<p:panelGrid columns="2" id="login" cellpadding="2">
 			Usuário<p:inputText id="username" value="#{LoginBean.usrLogin}" required="true"/>
 			Senha<p:password id="password" value="#{LoginBean.pswLogin}" required="true" />
-			<br> </br>
-			<p:commandButton value="Ok" update="@form" action="#{LoginBean.login}" />
-			<p:commandButton value="Cancelar" type="reset" />
+		</p:panelGrid>	
 			
-			<p:messages id="message_login" showDetail="true" closable="true">
-			</p:messages>
+		<p:commandButton value="Ok" update="@form" action="#{LoginBean.login}" />
+		<p:commandButton value="Cancelar" type="reset" />
 			
+		<p:messages id="message_login" showDetail="true" closable="true">
+		</p:messages>
+		
 		</h:form>
 	</p:dialog>
 

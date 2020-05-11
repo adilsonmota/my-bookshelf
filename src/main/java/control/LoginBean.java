@@ -48,10 +48,10 @@ public class LoginBean {
 		if (msg) {
 			this.userDAO.insert(user);
 			this.user = new User();
-			showMessage(true);
+//			showMessage(true);
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario j√° existe!"));
-			showMessage(msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario j· existe!"));
+//			showMessage(msg);
 		}
 	}
 	
@@ -68,23 +68,24 @@ public class LoginBean {
 		}
 		
 		if (msg) {
-			showMessage(true);
+//			showMessage(true);
 			return "searchGame.xhtml";
 		} else {
-			showMessage(false);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Verifique Usu√°rio ou Senha!"));
+//			showMessage(false);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Verifique Usu·rio ou Senha!"));
 		}
 		return null;
 	}
 	
+/**	
 	public void showMessage(boolean msg) {
 		if (msg) {
-			System.out.println("Sucesso na requisi√ß√£o!!!");
+			System.out.println("Sucesso na requisiÁ„o!!!");
 		} else {
-			System.out.println("Requisi√ß√£o falhou!!!");
+			System.out.println("RequisiÁ„o falhou!!!");
 		}
 	}
-	
+**/	
 		
 	public String getUsrLogin() {
 		return usrLogin;
