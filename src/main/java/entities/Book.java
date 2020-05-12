@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,7 +17,7 @@ import javax.persistence.Table;
 public class Book {
 	
 	@Id
-	@Column(name="ID", nullable = false)
+	@Column(name="ID_BOOK", nullable = false)
 	@GeneratedValue(generator = "SEQ_BOOK")
 	@SequenceGenerator(name = "SEQ_BOOK", sequenceName = "SEQ_BOOK", allocationSize = 1)
 	private int id;
@@ -48,32 +47,10 @@ public class Book {
 	private Date endRead;
 	
 	@ManyToOne
-//	@JoinTable(name="BOOK")
 	@JoinColumn(name="AUTOR")
 	private Author author;
 	
 	
-	//	@JoinTable(name="AUTHOR", joinColumns = @JoinColumn(name="nome"), 
-	//	inverseJoinColumns = @JoinColumn(name="book"))
-	
-/**	public Book() {
-	}
-	
-	public Book(int id, String title, String genre, Integer yearPub, Integer qttPag, String review, Integer rating,
-			Date startRead, Date endRead, Author author) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.genre = genre;
-		this.yearPub = yearPub;
-		this.qttPag = qttPag;
-		this.review = review;
-		this.rating = rating;
-		this.startRead = startRead;
-		this.endRead = endRead;
-		this.author = author;
-	}
-**/
 	public int getId() {
 		return id;
 	}
@@ -153,6 +130,4 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
-	
 }

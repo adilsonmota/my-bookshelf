@@ -13,10 +13,10 @@
 			<p:panelGrid columns="2" id="registerBook" cellpadding="9" >
 			
 				Título *<p:inputText id="title" value="#{AccesBookBean.book.title}" required="true" />
-				Autor *<p:inputText id="author" value="#{AccesBookBean.authorName}" required="true"/> 
+				Autor *<p:inputText id="author" value="#{AccesBookBean.author.name}" required="true"/> 
 				Gênero<p:inputText id="genre" value="#{AccesBookBean.book.genre}" /> 
 				Ano Publicação<p:inputMask id="yearPub" value="#{AccesBookBean.book.yearPub}" mask="9999"/> 
-				Quant. Páginas<p:inputText id="qttPag" value="#{AccesBookBean.book.qttPag}" /> 
+				Quant. Páginas<p:inputNumber id="qttPag" value="#{AccesBookBean.book.qttPag}" decimalPlaces="0"/> 
 				Avaliação<p:rating id="rating" value="#{AccesBookBean.book.rating}" />  
 				Início Leitura<p:inputMask id="startRead" value="#{AccesBookBean.startRead}" mask="99/99/9999" />
 				Fim Leitura<p:inputMask id="endRead" value="#{AccesBookBean.endRead}" mask="99/99/9999" />

@@ -2,10 +2,16 @@ package control;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.PrimeFaces;
 
 import dao.AuthorDAO;
 import dao.AuthorDAOImpl;
@@ -21,9 +27,9 @@ public class AccessBookBean {
 	
 	private SimpleDateFormat sdf;
 	
+	private String keyword;
 	private String startRead;
 	private String endRead;
-	private String authorName;
 	
 	private Book book;
 	private Author author;
@@ -31,7 +37,7 @@ public class AccessBookBean {
 	private BookDAO bookDAO;
 	private AuthorDAO authorDAO;
 	
-//	private List<Book> bookList;
+	private List<Book> lstbooks = new ArrayList<Book>();
 	
 	public AccessBookBean() {
 		
@@ -41,18 +47,14 @@ public class AccessBookBean {
 		this.bookDAO = new BookDAOImpl();
 		this.authorDAO = new AuthorDAOImpl();
 		
-//		this.bookList = new ArrayList<Book>();
-		
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 	
 	
 	public void registerBook() {
 		
-		Author newAuthor = new Author(authorName);	// insere o nome no objeto Author
+		Author newAuthor = new Author();	
 		Book newBook = new Book();
-		
-				
 		
 		newBook.setTitle(this.book.getTitle());
 		newBook.setGenre(this.book.getGenre());
@@ -67,58 +69,63 @@ public class AccessBookBean {
 		catch (Exception e) {
 			System.out.println("Invalid date format");
 		}
+		newAuthor.setName(this.author.getName());
 		
-		
-		
-		newBook.setAuthor(newAuthor);		// insere um Objeto Author no Objeto Book
-		newAuthor.addBook(newBook);			// insere na Lista de Livro do Author o Objeto Livro
-		
-		System.out.println("Dados do Autor: ");
-		System.out.println(newAuthor.getName());
-		System.out.println(newBook.getAuthor().getBook().get(0));
-		System.out.println("-------------------------------------------------------------------");
-		System.out.println("Dados do livro: ");
-		System.out.println(newBook.getTitle() +"|"+ newBook.getQttPag() +"|"+ newBook.getAuthor().getName()+"|"+ newBook.getAuthor().getBook());
-		System.out.println("-------------------------------------------------------------------");
+		newBook.setAuthor(newAuthor);		
+		newAuthor.addBook(newBook);			
+
 		this.authorDAO.insert(newAuthor);
 		this.bookDAO.insert(newBook);
 		
 		this.book = new Book();
 		this.author = new Author();
+		this.startRead = null;
+		this.endRead = null;
 	}
 
-
+	public void searchBook() {
+		
+		this.lstbooks = this.bookDAO.listAll();
+		
+		boolean msg = false;
+		
+		for (Book listlstbooks : lstbooks) {
+			if (	(listlstbooks.getTitle().equals(keyword) ||
+					listlstbooks.getAuthor().getName().equals(keyword)) ||
+					listlstbooks.getGenre().equals(keyword)	) {
+				msg = true;
+			} 
+		}
+		
+		if (msg) {
+			
+				
+			
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Nada encontrado!"));
+		}
+		
 	
-	
-	public String getauthorName() {
-		return authorName;
+		
+		
+		
 	}
-
-
-	public void setauthorName(String authorName) {
-		this.authorName = authorName;
-	}
-
 
 	public String getStartRead() {
 		return startRead;
 	}
 
-
 	public void setStartRead(String startRead) {
 		this.startRead = startRead;
 	}
-
 
 	public String getEndRead() {
 		return endRead;
 	}
 
-
 	public void setEndRead(String endRead) {
 		this.endRead = endRead;
 	}
-
 
 	public Book getBook() {
 		return book;
@@ -136,8 +143,19 @@ public class AccessBookBean {
 		this.author = author;
 	}
 
-/**	public List<Book> getBookList() {
-		return bookList;
+	public List<Book> getlstbooks() {
+		return lstbooks;
 	}
-**/
+
+	public void setlstbooks(List<Book> lstbooks) {
+		this.lstbooks = lstbooks;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 }

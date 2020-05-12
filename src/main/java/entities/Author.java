@@ -18,20 +18,9 @@ public class Author {
 	private String name;
 	
 	@OneToMany(mappedBy="author")
-//	@JoinTable(name="BOOK", joinColumns = @JoinColumn(name="AUTOR"),
-//	inverseJoinColumns = @JoinColumn(name="LIVRO"))
-	private List<Book> lstbooks = new ArrayList<Book>();;
+	private List<Book> lstbooks = new ArrayList<Book>();
 	
-//	@JoinTable(name="AUTHOR", joinColumns = @JoinColumn(name="nome"), 
-//			inverseJoinColumns = @JoinColumn(name="book"))
-	
-	public Author() {
-	}
 
-	public Author(String name) {
-		this.name = name;
-	}
-	
 	public String getName() {
 		return name;
 	}
@@ -44,18 +33,5 @@ public class Author {
 	
 	public void addBook(Book book) {
 		lstbooks.add(book);
-	}
-	
-	public void removeBook(Book book) {
-		lstbooks.remove(book);
-	}
-	
-	@Override
-	public String toString() {
-		String listando = null;
-		for (Book book : lstbooks) {
-			listando = "Dados do Livro: " + book.getTitle() +" | "+ book.getAuthor() +" | "+ book.getRating() + "Nome do Autor: " + getName();
-		}
-		return listando;
 	}
 }

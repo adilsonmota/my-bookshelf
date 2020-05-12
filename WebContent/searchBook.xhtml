@@ -11,7 +11,7 @@
 
 	<h:form>
 		
-		<p:link outcome="login.xhtml" value="SAIR">
+		<p:link outcome="index.xhtml" value="SAIR">
  <!--    	<f:param name="#{LoginBean.user}" value="null" update="@form"/> -->
 		</p:link>
 		
@@ -19,8 +19,8 @@
 		<br> </br>
 		
 		<h3>Buscar Livros</h3>
-		<p:inputText placeholder="palavra-chave" />
-		<p:commandButton value="Search" />
+		<p:inputText placeholder="palavra-chave" value="#{AccesBookBean.keyword}" />
+		<p:commandButton value="Search" action="#{AccesBookBean.searchBook}"/>
 		
 		<br> </br>
 
